@@ -17,7 +17,9 @@
 </template>
 
 <script>
-import {computed} from '@vue/reactivity'
+import {
+    computed
+} from '@vue/reactivity'
 
 export default {
     name: " UserDynamicInfo ",
@@ -28,7 +30,7 @@ export default {
             required: true,
         }
     },
-    setup(props,context) {
+    setup(props, context) {
         let fullName = computed(
             () => {
                 return props.user.firstName + props.user.lastName;

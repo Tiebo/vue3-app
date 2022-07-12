@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
-    path: '/Login',
-    name: 'Login',
-    component: () => import('../views/Login')
+    path: '/Login/',
+    name: 'LoginView',
+    component: () => import('../views/LoginView')
   },
   {
     path: '/',
@@ -11,19 +11,28 @@ const routes = [
     component: () => import('../views/HomeView')
   },
   {
-    path: '/FirendsList',
+    path: '/FirendsList/',
     name: 'FirendsList',
     component: () => import('../views/FirendsList')
   },
   {
-    path: '/UserDynamics',
+    path: '/UserDynamics/:userId/',
     name: 'UserDynamics',
     component: () => import('../views/UserDynamics')
   },
   {
-    path: '/Register',
+    path: '/Register/',
     name: 'Register',
     component: () => import('../views/Register')
+  },
+  {
+    path: '/404/',
+    name: 'NotFound',
+    component: () => import('../views/NotFound')
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: "/404/"
   },
 ]
 
