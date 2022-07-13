@@ -1,18 +1,19 @@
 <template>
     <Content>
-        注册
+        <Register/>
     </Content>
 </template>
 
 
 <script>
 import Content from '../components/Content.vue'
-
+import Register from "@/components/Register";
 
 export default {
-    name: "Register",
+    name: "RegisterView",
     components: {
         Content,
+        Register
     }
 }
 </script>

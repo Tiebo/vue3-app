@@ -11,10 +11,10 @@
                     <router-link class="nav-link active" aria-current="page" :to="{ name: 'HomeView' }">首页</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" :to="{ name: 'FirendsList' }">好友列表</router-link>
+                    <router-link class="nav-link" :to="{ name: 'FriendsListView' }">好友列表</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" :to="{ name: 'UserDynamics', params: { userId: 2 } }">用户动态</router-link>
+                    <router-link class="nav-link" :to="{ name: 'UserDynamicsView', params: { userId: 2 } }">用户动态</router-link>
                 </li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -22,7 +22,7 @@
                     <router-link class="nav-link" :to="{ name: 'LoginView' }">登录</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" :to="{ name: 'Register' }">注册</router-link>
+                    <router-link class="nav-link" :to="{ name: 'RegisterView' }">注册</router-link>
                 </li>
             </ul>
         </div>

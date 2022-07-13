@@ -11,24 +11,24 @@ const routes = [
     component: () => import('../views/HomeView')
   },
   {
-    path: '/FirendsList/',
-    name: 'FirendsList',
-    component: () => import('../views/FirendsList')
+    path: '/FriendsList/',
+    name: 'FriendsListView',
+    component: () => import('../views/FriendsListView')
   },
   {
     path: '/UserDynamics/:userId/',
-    name: 'UserDynamics',
-    component: () => import('../views/UserDynamics')
+    name: 'UserDynamicsView',
+    component: () => import('../views/UserDynamicsView')
   },
   {
     path: '/Register/',
-    name: 'Register',
-    component: () => import('../views/Register')
+    name: 'RegisterView',
+    component: () => import('../views/RegisterView')
   },
   {
     path: '/404/',
-    name: 'NotFound',
-    component: () => import('../views/NotFound')
+    name: 'NotFoundView',
+    component: () => import('../views/NotFoundView')
   },
   {
     path: '/:catchAll(.*)',

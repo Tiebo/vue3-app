@@ -10,7 +10,7 @@ import Content from '../components/Content.vue'
 
 
 export default {
-    name: "NotFound",
+    name: "NotFoundView",
     components: {
         Content,
     }

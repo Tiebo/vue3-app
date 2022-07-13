@@ -23,7 +23,7 @@ import UserDynamicsWrite from "../components/base/UserDynamicsWrite.vue";
 import { useRoute } from "vue-router";
 
 export default {
-  name: "UserDynamics",
+  name: "UserDynamicsView",
   components: {
     Content,
     UserDynamicInfo,

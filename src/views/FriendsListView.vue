@@ -22,7 +22,7 @@ import $ from "jquery";
 import { ref } from "vue";
 
 export default {
-  name: " FirendsList ",
+  name: " FriendsListView ",
   components: {
     Content,
   },
@@ -59,7 +59,7 @@ img {
 }
 .follow-count {
   color: gray;
-  font-size: 13 px;
+  font-size: 13px;
   height: 50%;
 }
 .card:hover {
