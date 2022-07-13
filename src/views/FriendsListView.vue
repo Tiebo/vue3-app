@@ -39,16 +39,18 @@ export default {
         users.value = response;
       },
     });
-    const open_Dynamics = (userID) => {
+    const open_Dynamics = (userId) => {
       if (store.state.user.is_login) {
         router.push({
           name: "UserDynamicsView",
           params: {
-            userID
+            userId
           }
         })
       } else {
-        router.push('LoginView');
+        router.push({
+          name: "LoginView"
+        });
       }
     }
     return {
