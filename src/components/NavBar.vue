@@ -11,8 +11,11 @@
           <li class="nav-item">
             <router-link class="nav-link active" aria-current="page" :to="{ name: 'HomeView' }">首页</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="$store.state.user.is_login">
             <router-link class="nav-link" :to="{ name: 'FriendsListView' }">好友列表</router-link>
+          </li>
+          <li class="nav-item" v-else>
+            <router-link class="nav-link" :to="{ name: 'LoginView' }">好友列表</router-link>
           </li>
         </ul>
         <ul class="navbar-nav" v-if="!$store.state.user.is_login">
@@ -29,7 +32,7 @@
                 class="nav-link"
                 :to="{name: 'UserDynamicsView', params: {userId: $store.state.user.id}}"
             >
-              {{ $store.state.user.username }}
+              <img class="img-circle" :src="$store.state.user.photo" alt="">
             </router-link>
           </li>
           <li class="nav-item">
@@ -61,5 +64,9 @@ export default {
 </script>
 
 <style scoped>
-
+.img-circle {
+  border-radius: 50%;
+  margin: -5px;
+  width: 40px;
+}
 </style>
