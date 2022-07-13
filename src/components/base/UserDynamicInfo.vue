@@ -3,10 +3,10 @@
     <div class="card-body">
         <div class="row">
             <div class="col-3">
-                <img class="img-fluid" src="https://cdn.acwing.com/media/user/profile/photo/184248_lg_6ff08d15d0.jpg" alt="">
+                <img class="img-fluid" :src=user.photo alt="">
             </div>
             <div class="col-9">
-                <div class="name">{{fullName}}</div>
+              <div class="name">{{ user.username }}</div>
                 <div class="follower">粉丝：{{user.followerCount}}</div>
                 <button v-if="!user.is_followed" @click="follow" class="btn btn-secondary btn-sm">+关注</button>
                 <button v-if="user.is_followed" @click="unfollow" class="btn btn-secondary btn-sm">取消关注</button>
@@ -17,10 +17,6 @@
 </template>
 
 <script>
-import {
-    computed
-} from '@vue/reactivity'
-
 export default {
     name: " UserDynamicInfo ",
     components: {},
@@ -31,10 +27,6 @@ export default {
         }
     },
     setup(props, context) {
-        let fullName = computed(
-            () => {
-                return props.user.firstName + props.user.lastName;
-            });
         const follow = () => {
             context.emit('follow');
         };
@@ -42,7 +34,6 @@ export default {
             context.emit('unfollow')
         }
         return {
-            fullName,
             follow,
             unfollow,
         }

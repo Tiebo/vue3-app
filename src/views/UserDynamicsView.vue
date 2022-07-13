@@ -20,7 +20,8 @@ import UserDynamicInfo from "../components/base/UserDynamicInfo.vue";
 import UserDynamicsPost from "../components/base/UserDynamicsPost.vue";
 import { reactive } from "vue";
 import UserDynamicsWrite from "../components/base/UserDynamicsWrite.vue";
-import { useRoute } from "vue-router";
+import {useRoute} from "vue-router";
+import $store from "@/store/index";
 
 export default {
   name: "UserDynamicsView",
@@ -36,14 +37,12 @@ export default {
     console.log(route);
 
     const user = reactive({
-      id: 1,
-      username: "Tiebo",
-      firstName: "Tie",
-      lastName: "bo",
-      followerCount: 1000,
+      id: $store.state.user.id,
+      username: $store.state.user.username,
+      followerCount: $store.state.user.followerCount,
+      photo: $store.state.user.photo,
       is_followed: false,
     });
-
     const posts = reactive({
       count: 4,
       posts: [

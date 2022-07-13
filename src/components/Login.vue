@@ -1,81 +1,67 @@
 <template>
-  <div class="row">
-    <form class="g-3 needs-validation" novalidate>
-      <div class="col-md-3">
-        <label for="validationCustom01" class="form-label">用户名</label>
-        <input
-            type="text"
-            class="form-control"
-            id="validationCustom01"
-            value=""
-            required
-        />
-        <div class="valid-feedback">Looks good!</div>
-      </div>
-
-      <div class="col-md-3">
-        <label for="validationCustom05" class="form-label">密码</label>
-        <input
-            type="password"
-            class="form-control"
-            id="validationCustom05"
-            required
-        />
-        <div class="invalid-feedback">请输入有效密码.</div>
-      </div>
-      <div class="col-md-3">
-        <label for="validationCustom04" class="form-label">状态</label>
-        <select class="form-select" id="validationCustom04" required>
-          <option selected disabled value="">选择...</option>
-          <option>在线</option>
-          <option>隐身</option>
-          <option>忙碌</option>
-        </select>
-        <div class="invalid-feedback">请选择有效状态.</div>
-      </div>
+    <div class="row justify-content-md-center">
       <div class="col-3">
-        <button class="btn btn-primary" type="submit">登录</button>
+        <form @submit.prevent="login">
+          <div class="mb-3">
+            <label for="username" class="form-label">用户名</label>
+            <input v-model="username" type="text" class="form-control" id="username">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">密码</label>
+            <input v-model="password" type="password" class="form-control" id="password">
+          </div>
+          <div class="error-message">{{ error_message }}</div>
+          <button type="submit" class="btn btn-primary">登录</button>
+        </form>
       </div>
-      <div class="row">
-        <router-link class="right col-6" :to="{name : 'RegisterView'}">注册</router-link>
-        <span>|</span>
-        <router-link class="left col-5  " :to="{name : 'RegisterView'}">忘记密码</router-link>
-      </div>
-    </form>
-  </div>
+    </div>
 </template>
 
 <script>
+import {ref} from 'vue';
+import {useStore} from 'vuex';
+import router from '@/router/index';
+
 export default {
   name: "Login",
   components: {},
+  setup() {
+    const store = useStore();
+    let username = ref('');
+    let password = ref('');
+    let error_message = ref('');
+
+    const login = () => {
+      error_message.value = "";
+      store.dispatch("login", {
+        username: username.value,
+        password: password.value,
+        success() {
+          router.push({name: 'FriendsListView'});
+        },
+        error() {
+          error_message.value = "用户名或密码错误";
+        }
+      });
+    };
+    return {
+      username,
+      password,
+      error_message,
+      login,
+    }
+  }
 };
+
+
 </script>
 
 <style scoped>
-span{
-  width: 1px;
-}
-.right{
-    color: gray;
-    display: flex;
-    justify-content: right;
-}
-.left{
-  color: gray;
-  display: flex;
-  justify-content: left;
-}
-button{
-  margin-top: 15px;
+button {
   width: 100%;
 }
 
-div {
-  margin: 15px auto auto;
+.error-message {
+  color: red;
 }
-form {
-  vertical-align: middle;
-}
-
 </style>

@@ -1,10 +1,10 @@
 <template>
   <Content>
-    <div class="card getinit" v-for="user in users" :key="user.id">
+    <div class="card getinit" v-for="user in users" :key="user.id" @click="open_Dynamics(user.id)">
       <div class="card-body">
         <div class="row">
           <div class="col-1">
-            <img class="img-fluid" :src="user.photo" alt="" />
+            <img class="img-fluid" :src="user.photo" alt=""/>
           </div>
           <div class="col-11">
             <div class="username">{{ user.username }}</div>
@@ -19,7 +19,10 @@
 <script>
 import Content from "../components/Content.vue";
 import $ from "jquery";
-import { ref } from "vue";
+import {ref} from "vue";
+import router from "@/router/index"
+import {useStore} from 'vuex';
+
 
 export default {
   name: " FriendsListView ",
@@ -28,7 +31,7 @@ export default {
   },
   setup() {
     let users = ref([]);
-
+    const store = useStore();
     $.ajax({
       type: "get",
       url: "https://app165.acapp.acwing.com.cn/myspace/userlist/",
@@ -36,9 +39,21 @@ export default {
         users.value = response;
       },
     });
-
+    const open_Dynamics = (userID) => {
+      if (store.state.user.is_login) {
+        router.push({
+          name: "UserDynamicsView",
+          params: {
+            userID
+          }
+        })
+      } else {
+        router.push('LoginView');
+      }
+    }
     return {
       users,
+      open_Dynamics,
     };
   },
 };
