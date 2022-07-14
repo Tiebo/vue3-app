@@ -7,9 +7,9 @@
             </div>
             <div class="col-9">
               <div class="name">{{ user.username }}</div>
-                <div class="follower">粉丝：{{user.followerCount}}</div>
-                <button v-if="!user.is_followed" @click="follow" class="btn btn-secondary btn-sm">+关注</button>
-                <button v-if="user.is_followed" @click="unfollow" class="btn btn-secondary btn-sm">取消关注</button>
+              <div class="follower">粉丝：{{ user.followerCount }}</div>
+              <button v-if="!user.is_followed && !is_me" @click="follow" class="btn btn-secondary btn-sm">+关注</button>
+              <button v-if="user.is_followed && !is_me" @click="unfollow" class="btn btn-secondary btn-sm">取消关注</button>
             </div>
         </div>
     </div>
@@ -17,25 +17,56 @@
 </template>
 
 <script>
+import $ from 'jquery';
+import {useStore} from 'vuex';
+import {computed} from "vue";
+
 export default {
-    name: " UserDynamicInfo ",
-    components: {},
-    props: {
-        user: {
-            type: Object,
-            required: true,
-        }
-    },
+  name: " UserDynamicInfo ",
+  components: {},
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    }
+  },
     setup(props, context) {
-        const follow = () => {
-            context.emit('follow');
-        };
+      const store = useStore();
+      let is_me = computed(() => store.state.user.id === props.user.id);
+      const follow = () => {
+        $.ajax({
+          url: "https://app165.acapp.acwing.com.cn/myspace/follow/",
+          type: "POST",
+          headers: {'Authorization': 'Bearer ' + store.state.user.access},
+          data: {
+            target_id: props.user.id,
+          },
+          success(resp) {
+            if (resp.result === "success") {
+              context.emit('follow');
+            }
+          }
+        });
+      };
         const unfollow = () => {
-            context.emit('unfollow')
+          $.ajax({
+            url: "https://app165.acapp.acwing.com.cn/myspace/follow/",
+            type: "POST",
+            headers: {'Authorization': "Bearer " + store.state.user.access},
+            data: {
+              target_id: props.user.id,
+            },
+            success(resp) {
+              if (resp.result === "success") {
+                context.emit('unfollow');
+              }
+            }
+          });
         }
         return {
             follow,
             unfollow,
+          is_me
         }
     }
 

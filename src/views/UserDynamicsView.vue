@@ -97,7 +97,6 @@ export default {
       })
     };
     const deletePost = post_id => {
-      console.log(post_id);
       posts.posts = posts.posts.filter(post => post.id !== post_id);
       posts.count = posts.posts.length;
     }
