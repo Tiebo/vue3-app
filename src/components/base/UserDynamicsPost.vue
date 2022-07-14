@@ -40,6 +40,7 @@ export default {
 
     const deletePost = (post_id) => {
       $.ajax({
+        //删除帖子
         url: "https://app165.acapp.acwing.com.cn/myspace/post/",
         type: "DELETE",
         headers: {

@@ -38,6 +38,7 @@ export default {
     const register = () => {
       error_message.value = "";
       $.ajax({
+        //注册
         url: "https://app165.acapp.acwing.com.cn/myspace/user/",
         type: "POST",
         data: {

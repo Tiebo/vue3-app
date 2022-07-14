@@ -35,6 +35,7 @@ export default {
       let is_me = computed(() => store.state.user.id === props.user.id);
       const follow = () => {
         $.ajax({
+          //关注
           url: "https://app165.acapp.acwing.com.cn/myspace/follow/",
           type: "POST",
           headers: {'Authorization': 'Bearer ' + store.state.user.access},
@@ -50,6 +51,7 @@ export default {
       };
         const unfollow = () => {
           $.ajax({
+            //取消关注
             url: "https://app165.acapp.acwing.com.cn/myspace/follow/",
             type: "POST",
             headers: {'Authorization': "Bearer " + store.state.user.access},

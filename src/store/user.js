@@ -49,6 +49,7 @@ const ModuleUser = {
 
                     setInterval(() => {
                         $.ajax({
+                            //刷新令牌
                             url: "https://app165.acapp.acwing.com.cn/api/token/refresh/",
                             type: "POST",
                             data: {
@@ -70,6 +71,7 @@ const ModuleUser = {
                                 'Authorization': "Bearer " + access,
                             },
                             success(resp) {
+
                                 context.commit("updateUser", {
                                     ...resp,
                                     access: access,
