@@ -33,8 +33,9 @@ export default {
     let users = ref([]);
     const store = useStore();
     $.ajax({
-      type: "get",
+      //获取好友列表
       url: "https://app165.acapp.acwing.com.cn/myspace/userlist/",
+      type: "get",
       success: function (response) {
         users.value = response;
       },
@@ -52,7 +53,7 @@ export default {
           name: "LoginView"
         });
       }
-    }
+    };
     return {
       users,
       open_Dynamics,

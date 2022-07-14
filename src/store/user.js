@@ -7,11 +7,13 @@ const ModuleUser = {
         username: "",
         photo: "",
         followerCount: 0,
+        access: "",
+        refresh: "",
         is_login: false,
     },
     mutations: {
         updateUser(state, user) {
-            state.id = user;
+            state.id = user.id;
             state.username = user.username;
             state.photo = user.photo;
             state.followerCount = user.followerCount;
